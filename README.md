@@ -16,7 +16,7 @@
 
 ## 🚀 Demo en Vivo
 
-👉 **[Ver Sitio Web](https://tuusuario.github.io/tocupboard-ecommerce/)**
+👉 **[Ver Sitio Web](https://milton2003afg.github.io/tocupboard-ecommerce/)**
 
 ---
 
@@ -155,13 +155,13 @@ const products = await response.json();
 1. Fork este repositorio
 2. Ve a Settings → Pages
 3. Selecciona la rama `main` como fuente
-4. Tu sitio estará en: `https://tuusuario.github.io/tocupboard-ecommerce/`
+4. Tu sitio estará en: `https://milton2003afg.github.io/tocupboard-ecommerce/`
 
 ### Opción 2: Local
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/tuusuario/tocupboard-ecommerce.git
+git clone https://github.com/Milton2003AFG/tocupboard-ecommerce.git
 
 # Abrir index.html en tu navegador
 cd tocupboard-ecommerce
@@ -280,8 +280,8 @@ Este es un proyecto académico, pero si deseas sugerir mejoras:
 
 Para preguntas o sugerencias sobre el proyecto:
 
-- 📧 Email: milton.flores@ejemplo.com
-- 🌐 GitHub: [@tuusuario](https://github.com/tuusuario)
+- 📧 Email: miltonflores2003@gmail.com
+- 🌐 GitHub: [@Milton2003AFG](https://github.com/Milton2003AFG)
 
 ---
 
