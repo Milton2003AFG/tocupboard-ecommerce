@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ToCupboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+        }
+
+        /* NAVEGACIÓN */
+        nav {
+            background: #2c3e50;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        /* CONTENEDOR */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            font-size: 36px;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+
+        /* FORMULARIO */
+        .checkout-form {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+        }
+
+        .form-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* MÉTODOS DE PAGO */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .payment-option {
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-option:hover {
+            border-color: #3498db;
+            background: #f8f9fa;
+        }
+
+        .payment-option.active {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+
+        .payment-option input[type="radio"] {
+            display: none;
+        }
+
+        .payment-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .payment-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        /* RESUMEN DE ORDEN */
+        .order-summary {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+        }
+
+        .order-summary h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .summary-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-image {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .summary-details {
+            flex: 1;
+        }
+
+        .summary-title {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .summary-price {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .summary-row.total {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            padding-top: 15px;
+            border-top: 2px solid #ecf0f1;
+            margin-top: 15px;
+        }
+
+        /* BOTÓN DE PAGO */
+        .pay-button {
+            width: 100%;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .pay-button:hover {
+            background: #27ae60;
+        }
+
+        .pay-button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+        }
+
+        /* MODAL DE ÉXITO */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            max-width: 500px;
+            animation: scaleIn 0.3s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content h2 {
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .order-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 20px 0;
+        }
+
+        .modal-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+
+        .modal-button:hover {
+            background: #2980b9;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-summary {
+                position: static;
+            }
+
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">💳 ToCupboard</a>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="container">
+        <h1>💳 Finalizar Compra</h1>
+
+        <div class="checkout-grid">
+            <!-- FORMULARIO -->
+            <div class="checkout-form">
+                <form id="checkout-form">
+                    <!-- INFORMACIÓN PERSONAL -->
+                    <div class="form-section">
+                        <h2>📋 Información Personal</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nombre *</label>
+                                <input type="text" id="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Apellido *</label>
+                                <input type="text" id="lastName" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono *</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+
+                    <!-- DIRECCIÓN DE ENVÍO -->
+                    <div class="form-section">
+                        <h2>📍 Dirección de Envío</h2>
+                        <div class="form-group">
+                            <label>Dirección *</label>
+                            <input type="text" id="address" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Ciudad *</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Código Postal *</label>
+                                <input type="text" id="zipCode" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>País *</label>
+                            <select id="country" required>
+                                <option value="">Seleccionar país</option>
+                                <option value="SV">El Salvador</option>
+                                <option value="GT">Guatemala</option>
+                                <option value="HN">Honduras</option>
+                                <option value="CR">Costa Rica</option>
+                                <option value="MX">México</option>
+                                <option value="US">Estados Unidos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- MÉTODO DE PAGO -->
+                    <div class="form-section">
+                        <h2>💳 Método de Pago</h2>
+                        <div class="payment-methods">
+                            <label class="payment-option active">
+                                <input type="radio" name="payment" value="card" checked>
+                                <div class="payment-icon">💳</div>
+                                <div class="payment-label">Tarjeta</div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="paypal">
+                                <div class="payment-icon">🅿️</div>
+                                <div class="payment-label">PayPal</div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cash">
+                                <div class="payment-icon">💵</div>
+                                <div class="payment-label">Efectivo</div>
+                            </label>
+                        </div>
+
+                        <div id="card-details">
+                            <div class="form-group">
+                                <label>Número de Tarjeta *</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Fecha de Expiración *</label>
+                                    <input type="text" id="expiry" placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV *</label>
+                                    <input type="text" id="cvv" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- RESUMEN DE ORDEN -->
+            <div class="order-summary">
+                <h2>📦 Resumen del Pedido</h2>
+                <div id="order-items"></div>
+                <div style="margin-top: 20px;">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Envío:</span>
+                        <span id="shipping">$5.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                </div>
+                <button type="submit" class="pay-button" id="pay-btn">
+                    🔒 Pagar Ahora
+                </button>
+                <p style="text-align: center; color: #7f8c8d; font-size: 12px; margin-top: 15px;">
+                    🔒 Pago 100% seguro y encriptado
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ÉXITO -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="success-icon">✅</div>
+            <h2>¡Pago Exitoso!</h2>
+            <p>Tu orden ha sido procesada correctamente</p>
+            <div class="order-number" id="order-number"></div>
+            <p>Recibirás un email de confirmación en breve</p>
+            <button class="modal-button" onclick="window.location.href='index.html'">
+                Volver al Inicio
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>ToCupboard E-commerce</strong></p>
+        <p>Pasarela de Pagos Segura - Sistema de Checkout</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ==========================================
+        // CARGAR RESUMEN
+        // ==========================================
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('tocupboard_cart') || '[]');
+            
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                window.location.href = 'productos.html';
+                return;
+            }
+
+            const container = document.getElementById('order-items');
+            container.innerHTML = '';
+            
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'summary-item';
+                itemDiv.innerHTML = `
+                    <img src="${item.image}" alt="${item.title}" class="summary-image">
+                    <div class="summary-details">
+                        <div class="summary-title">${item.title}</div>
+                        <div class="summary-price">$${item.price.toFixed(2)} x ${item.quantity}</div>
+                    </div>
+                `;
+                container.appendChild(itemDiv);
+            });
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = 5.00;
+            const total = subtotal + shipping;
+            
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+        }
+
+        // ==========================================
+        // CAMBIAR MÉTODO DE PAGO
+        // ==========================================
+        document.querySelectorAll('.payment-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+                
+                const cardDetails = document.getElementById('card-details');
+                if (this.querySelector('input').value === 'card') {
+                    cardDetails.style.display = 'block';
+                } else {
+                    cardDetails.style.display = 'none';
+                }
+            });
+        });
+
+        // ==========================================
+        // FORMATEAR TARJETA
+        // ==========================================
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '');
+            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+            e.target.value = formattedValue;
+        });
+
+        document.getElementById('expiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('cvv').addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+
+        // ==========================================
+        // PROCESAR PAGO
+        // ==========================================
+        document.getElementById('pay-btn').addEventListener('click', async function(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('checkout-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const btn = document.getElementById('pay-btn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Procesando...';
+
+            // SIMULACIÓN DE PAGO (2 segundos)
+            setTimeout(() => {
+                const orderNumber = 'TC-' + Date.now();
+                document.getElementById('order-number').textContent = orderNumber;
+                
+                // Mostrar modal
+                document.getElementById('success-modal').style.display = 'flex';
+                
+                // Limpiar carrito
+                localStorage.removeItem('tocupboard_cart');
+                
+                console.log('✅ Pago procesado exitosamente:', orderNumber);
+            }, 2000);
+        });
+
+        // ==========================================
+        // INICIALIZAR
+        // ==========================================
+        window.addEventListener('load', () => {
+            console.log('🚀 Iniciando Checkout...');
+            loadOrderSummary();
+        });
+    </script>
+</body>
+</html>

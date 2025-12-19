@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToCupboard - Tu Tienda Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* NAVEGACIÓN */
+        nav {
+            background: #2c3e50;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* CARACTERÍSTICAS */
+        .features {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #2c3e50;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        /* ANIMACIONES */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">🛍️ ToCupboard</a>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Bienvenido a ToCupboard</h1>
+        <p>Tu tienda online de tecnología y electrónica de confianza</p>
+        <a href="productos.html" class="btn">Ver Productos</a>
+    </section>
+
+    <!-- CARACTERÍSTICAS -->
+    <section class="features">
+        <h2>¿Por qué elegirnos?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon">🚚</div>
+                <h3>Envíos Rápidos</h3>
+                <p>Entrega en 2-3 días hábiles a todo el país</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">💳</div>
+                <h3>Pagos Seguros</h3>
+                <p>Procesamiento seguro con Stripe. Tus datos protegidos.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">✅</div>
+                <h3>Garantía</h3>
+                <p>30 días de garantía en todos nuestros productos</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">💬</div>
+                <h3>Soporte 24/7</h3>
+                <p>Estamos aquí para ayudarte cuando lo necesites</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>ToCupboard E-commerce</strong></p>
+        <p>Proyecto académico - Modelo DevSecOps</p>
+        <p>Desarrollado por Milton Flores | Diciembre 2025</p>
+        <p><a href="https://github.com/tuusuario/tocupboard-ecommerce" target="_blank">Ver en GitHub</a></p>
+    </footer>
+</body>
+</html>

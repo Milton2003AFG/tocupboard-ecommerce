@@ -1,0 +1,52 @@
+Ya cree la pagina, sin embargo me muestra el codigo que no es html, como el css y el js en la interfaz como texto plano
+
+¡Ah! Ese es el problema de WordPress.com gratuito - tiene restricciones de seguridad que no permiten ejecutar JavaScript directamente.
+
+Tenemos 2 soluciones:
+🎯 SOLUCIÓN 1: Usar GitHub Pages (RECOMENDADO - Más fácil)
+
+Creamos un sitio HTML puro y lo subimos a GitHub Pages (100% gratis y sin restricciones).
+🎯 SOLUCIÓN 2: Usar un servicio de hosting gratuito
+
+Usamos InfinityFree o 000webhost que sí permiten HTML/CSS/JS completo.
+✅ Te recomiendo la SOLUCIÓN 1 (GitHub Pages)
+
+Es la más simple y profesional. ¿Quieres que te guíe paso a paso para crear tu sitio en GitHub Pages?
+
+Será así:
+
+    Crear archivos HTML (5 minutos)
+    Subir a GitHub (5 minutos)
+    Activar GitHub Pages (2 minutos)
+    ¡Listo! Tu sitio funcionando en: https://tuusuario.github.io/tocupboard
+
+Ventajas:
+
+    ✅ Totalmente gratis
+    ✅ Sin restricciones de código
+    ✅ Ya vas a tener el repositorio para entregar
+    ✅ El profesor puede ver el código en GitHub
+    ✅ Todo en un solo lugar
+
+¿Hacemos esto? Es mucho más directo y cumple perfectamente con tu actividad. 😊
+
+Si
+
+Ahora te voy a dar las instrucciones exactas para subir todo a GitHub:
+📋 PASOS PARA SUBIR A GITHUB PAGES
+PASO 1: Crear carpeta en tu computadora
+
+Crea una carpeta llamada tocupboard-ecommerce
+Dentro de esa carpeta, crea estos 5 archivos:
+
+index.html (copia el código del primer artifact)
+productos.html (copia el código del segundo artifact)
+carrito.html (te lo doy ahora)
+checkout.html (te lo doy ahora)
+contacto.html (te lo doy ahora)
+
+
+
+PASO 2: Espera los demás archivos
+Déjame crear los 3 archivos que faltan (Carrito, Checkout y Contacto) y luego te explico cómo subirlos a GitHub.
+¿Ya creaste la carpeta? Mientras tanto te doy el código del carrito.html...
